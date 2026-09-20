@@ -17,29 +17,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {AlertController, ModalController, Platform, ToastController} from '@ionic/angular';
-import {DeviceOrientation, DeviceOrientationCompassHeading} from '@ionic-native/device-orientation/ngx';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import { AlertController, ModalController, Platform, ToastController, IonicModule } from '@ionic/angular';
+import {DeviceOrientation, DeviceOrientationCompassHeading} from '@awesome-cordova-plugins/device-orientation/ngx';
 import {
     BackgroundGeolocation,
     BackgroundGeolocationAuthorizationStatus,
     BackgroundGeolocationEvents, BackgroundGeolocationLocationProvider,
     BackgroundGeolocationResponse
-} from '@ionic-native/background-geolocation/ngx';
+} from '@awesome-cordova-plugins/background-geolocation/ngx';
 import {SettingsPage} from '../settings/settings.page';
 import {ApiService} from '../../services/api/api.service';
 import {Settings, SettingsService} from '../../services/settings/settings.service';
 import {LogsService} from '../../services/logs/logs.service';
+import { NgIf, NgClass, DecimalPipe, DatePipe } from '@angular/common';
 
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
+    imports: [
+        IonicModule,
+        NgIf,
+        NgClass,
+        DecimalPipe,
+        DatePipe,
+    ],
 })
 
 
-export class HomePage implements AfterViewInit {
+export class HomePage {
 
     // COMPASS
     private static readonly COMPASS_FREQUENCY = 50;
@@ -101,10 +109,6 @@ export class HomePage implements AfterViewInit {
                 public apiService: ApiService,
                 public logsService: LogsService) {
     }
-
-    ngAfterViewInit() {
-    }
-
     ionViewDidEnter() {
         console.log('ionViewDidEnter HomePage');
         this.deviceOrientation.watchHeading({frequency: HomePage.COMPASS_FREQUENCY}).subscribe(

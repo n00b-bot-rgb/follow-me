@@ -18,12 +18,12 @@
  */
 
 
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
 import {IonicModule, AlertController, Platform, ModalController, ToastController} from '@ionic/angular';
 
 import {HomePage} from './home.page';
-import {BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
-import {DeviceOrientation} from '@ionic-native/device-orientation/ngx';
+import {BackgroundGeolocation} from '@awesome-cordova-plugins/background-geolocation/ngx';
+import {DeviceOrientation} from '@awesome-cordova-plugins/device-orientation/ngx';
 import {ApiService} from '../../services/api/api.service';
 import {SettingsService} from '../../services/settings/settings.service';
 import {LogsService} from '../../services/logs/logs.service';
@@ -35,7 +35,7 @@ describe('HomePage', () => {
     let deviceOrientationSpy, backgroundGeolocationSpy, alertControllerSpy, modalControllerSpy, settingsServiceSpy, apiServiceSpy, logsSpy;
 
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         deviceOrientationSpy = jasmine.createSpyObj('DeviceOrientation', ['watchHeading']);
         backgroundGeolocationSpy = jasmine.createSpyObj('BackgroundGeolocation', ['configure', 'start']);
         alertControllerSpy = jasmine.createSpyObj('AlertController', ['create']);
@@ -45,18 +45,17 @@ describe('HomePage', () => {
         logsSpy = jasmine.createSpyObj('LogsService', ['create']);
 
         TestBed.configureTestingModule({
-            declarations: [HomePage],
-            imports: [IonicModule.forRoot()],
-            providers: [
-                {provide: DeviceOrientation, useValue: deviceOrientationSpy},
-                {provide: BackgroundGeolocation, useValue: backgroundGeolocationSpy},
-                {provide: AlertController, useValue: alertControllerSpy},
-                {provide: ModalController, useValue: modalControllerSpy},
-                {provide: SettingsService, useValue: settingsServiceSpy},
-                {provide: ApiService, useValue: apiServiceSpy},
-                {provide: LogsService, useValue: logsSpy},
-            ]
-        }).compileComponents();
+    imports: [IonicModule.forRoot(), HomePage],
+    providers: [
+        { provide: DeviceOrientation, useValue: deviceOrientationSpy },
+        { provide: BackgroundGeolocation, useValue: backgroundGeolocationSpy },
+        { provide: AlertController, useValue: alertControllerSpy },
+        { provide: ModalController, useValue: modalControllerSpy },
+        { provide: SettingsService, useValue: settingsServiceSpy },
+        { provide: ApiService, useValue: apiServiceSpy },
+        { provide: LogsService, useValue: logsSpy },
+    ]
+}).compileComponents();
 
         fixture = TestBed.createComponent(HomePage);
         component = fixture.componentInstance;
