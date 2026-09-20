@@ -27,18 +27,17 @@ import { HomePage } from './home.page';
 import {SettingsPage} from "../settings/settings.page";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
-  ],
-  declarations: [HomePage, SettingsPage],
-  entryComponents : [SettingsPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: HomePage
+            }
+        ]),
+        HomePage, SettingsPage
+    ]
 })
 export class HomePageModule {}
