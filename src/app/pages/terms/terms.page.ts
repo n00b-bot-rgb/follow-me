@@ -18,13 +18,14 @@
  */
 
 import {Component} from '@angular/core';
-import {ModalController} from "@ionic/angular";
+import { ModalController, IonicModule } from "@ionic/angular";
 import {SettingsService} from "../../services/settings/settings.service";
 
 @Component({
-    selector: 'terms-page',
+    selector: 'app-terms',
     templateUrl: 'terms.page.html',
     styleUrls: ['terms.page.scss'],
+    imports: [IonicModule],
 })
 export class TermsPage {
 

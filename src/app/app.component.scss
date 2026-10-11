@@ -1,12 +1,8 @@
-@import "../theme/variables";
+@use "../theme/variables";
 
 
 ion-header.logo-header{
   --home-logo-size : 150px;
-
-  @media screen and (max-height: $small-scree-max-height) {
-    --home-logo-size : 100px;
-  }
 
   background-color: transparent;
   background-image: url("/assets/header-logo.png");
@@ -15,6 +11,10 @@ ion-header.logo-header{
   background-repeat: no-repeat;
   height: 150px;
   margin-top: var(--cordova-statusbar-padding);
+
+  @media screen and (max-height: variables.$small-scree-max-height) {
+    --home-logo-size : 100px;
+  }
 }
 
 ion-modal ion-header{

@@ -18,16 +18,14 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Storage} from '@ionic/storage';
+import {AppStorage} from '../../core/app-storage.service';
 import {environment} from '../../../environments/environment';
 import {
-    BackgroundGeolocation,
-    BackgroundGeolocationAccuracy,
     BackgroundGeolocationConfig,
     BackgroundGeolocationLocationProvider
-} from '@ionic-native/background-geolocation/ngx';
-import {Device} from '@ionic-native/device/ngx';
-import {EmmAppConfig} from '@ionic-native/emm-app-config/ngx';
+} from '@awesome-cordova-plugins/background-geolocation/ngx';
+import {Device} from '@awesome-cordova-plugins/device/ngx';
+import {EmmAppConfig} from '../../native/emm-app-config.service';
 import {Platform} from '@ionic/angular';
 
 
@@ -62,7 +60,7 @@ export class SettingsService {
     public static readonly CURRENT_VERSION = 3;
     public settingsPopulated = false;
 
-    constructor(public storage: Storage,
+    constructor(public storage: AppStorage,
                 private readonly device: Device,
                 private readonly platform: Platform,
                 private readonly emmAppConfig: EmmAppConfig) {

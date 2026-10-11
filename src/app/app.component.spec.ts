@@ -18,14 +18,14 @@
  */
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {TestBed, async} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import {ModalController, Platform} from '@ionic/angular';
-import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {SplashScreen} from '@awesome-cordova-plugins/splash-screen/ngx';
+import {StatusBar} from '@awesome-cordova-plugins/status-bar/ngx';
 
 import {AppComponent} from './app.component';
-import {BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
+import {BackgroundGeolocation} from '@awesome-cordova-plugins/background-geolocation/ngx';
 import {Router} from "@angular/router";
 import {SettingsService} from "./services/settings/settings.service";
 
@@ -33,7 +33,7 @@ describe('AppComponent', () => {
 
     let statusBarSpy, splashScreenSpy, backgroundGeolocationSpy, platformIsSpy, platformReadySpy, platformSpy, routerSpy, modalControllerSpy, settingsServiceSpy;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault', 'overlaysWebView', 'backgroundColorByHexString']);
         splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
         backgroundGeolocationSpy = jasmine.createSpyObj('BackgroundGeolocation', ['configure']);
@@ -47,18 +47,18 @@ describe('AppComponent', () => {
         settingsServiceSpy = jasmine.createSpyObj('SettingsService', ['create']);
 
         TestBed.configureTestingModule({
-            declarations: [AppComponent],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [
-                {provide: Platform, useValue: platformSpy},
-                {provide: SplashScreen, useValue: splashScreenSpy},
-                {provide: StatusBar, useValue: statusBarSpy},
-                {provide: BackgroundGeolocation, useValue: backgroundGeolocationSpy},
-                {provide: Router, useValue: routerSpy},
-                {provide: ModalController, useValue: modalControllerSpy},
-                {provide: SettingsService, useValue: settingsServiceSpy},
-            ],
-        }).compileComponents();
+    imports: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    providers: [
+        { provide: Platform, useValue: platformSpy },
+        { provide: SplashScreen, useValue: splashScreenSpy },
+        { provide: StatusBar, useValue: statusBarSpy },
+        { provide: BackgroundGeolocation, useValue: backgroundGeolocationSpy },
+        { provide: Router, useValue: routerSpy },
+        { provide: ModalController, useValue: modalControllerSpy },
+        { provide: SettingsService, useValue: settingsServiceSpy },
+    ],
+}).compileComponents();
     }));
 
     it('should be running', () => {

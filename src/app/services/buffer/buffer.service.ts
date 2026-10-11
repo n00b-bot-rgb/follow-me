@@ -18,9 +18,8 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Storage} from '@ionic/storage';
-import {environment} from '../../../environments/environment';
-import {BackgroundGeolocationResponse} from "@ionic-native/background-geolocation/ngx";
+import {AppStorage} from '../../core/app-storage.service';
+import {BackgroundGeolocationResponse} from "@awesome-cordova-plugins/background-geolocation/ngx";
 import {Trigger} from "../api/api.service";
 
 export interface BufferedLocation {
@@ -35,7 +34,7 @@ export class BufferService {
 
     private static readonly BUFFER_STORAGE_KEY = 'buffer';
 
-    constructor(public storage: Storage) {
+    constructor(public storage: AppStorage) {
     }
 
     async addLocation(alocation: BackgroundGeolocationResponse, ahttpError: any, atrigger: Trigger) {

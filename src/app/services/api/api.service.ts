@@ -19,9 +19,9 @@
 
 import {Injectable} from '@angular/core';
 import {Settings, SettingsService} from '../settings/settings.service';
-import {HTTP, HTTPResponse} from '@ionic-native/http/ngx';
-import {BackgroundGeolocationResponse} from '@ionic-native/background-geolocation/ngx';
-import {BatteryStatus, BatteryStatusResponse} from '@ionic-native/battery-status/ngx';
+import {HTTP, HTTPResponse} from '@awesome-cordova-plugins/http/ngx';
+import {BackgroundGeolocationResponse} from '@awesome-cordova-plugins/background-geolocation/ngx';
+import {BatteryStatus, BatteryStatusResponse} from '@awesome-cordova-plugins/battery-status/ngx';
 import {ToastController} from '@ionic/angular';
 import {BufferedLocation, BufferService} from '../buffer/buffer.service';
 import {LogsService} from '../logs/logs.service';

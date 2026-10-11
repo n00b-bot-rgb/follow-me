@@ -1,4 +1,5 @@
-@import "src/theme/variables";
+@use "sass:math";
+@use "theme/variables";
 
 app-home.ion-page {
 
@@ -15,8 +16,13 @@ app-home.ion-page {
   --home-location-strong-line-height : 32px;
   --home-location-margin-bottom : 16px;
 
+  background-image: url("/assets/home-bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
   // For small screens
-  @media screen and (max-height: $small-scree-max-height) {
+  @media screen and (max-height: variables.$small-scree-max-height) {
     --home-compass-margin-top : 0px;
     --home-compass-value-font-size : 42px;
     --home-compass-direction-font-size : 16px;
@@ -30,10 +36,6 @@ app-home.ion-page {
   }
 
 
-  background-image: url("/assets/home-bg.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 
   ion-content {
     --background: transparent;
@@ -214,7 +216,7 @@ app-home.ion-page {
         height: $record-btn-size;
         margin-bottom: $record-btn-margin;
         border: $record-btn-border-size solid #fff;
-        border-radius: $record-btn-size/2;
+        border-radius: math.div($record-btn-size, 2);
         opacity: 0.5;
         position: relative;
         transition: border-color $record-btn-transition-time ease-in-out, opacity $record-btn-transition-time ease-in-out;
@@ -262,7 +264,7 @@ app-home.ion-page {
       &.settings{
         position: absolute;
         right: $home-right-padding;
-        bottom: $record-btn-margin + (($record-btn-size - $settings-btn-size)/2);
+        bottom: $record-btn-margin + math.div($record-btn-size - $settings-btn-size, 2);
         width: $settings-btn-size;
         height: $settings-btn-size;
         background-image: url("/assets/icon-settings-white.png");
